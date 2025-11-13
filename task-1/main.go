@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"tasks/task-1/hello"
+
+	"task-1/hello"
 )
 
 func main() {
