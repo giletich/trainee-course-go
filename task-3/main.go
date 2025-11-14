@@ -10,9 +10,9 @@ func main() {
 
 func ReturnUniqueValaues(s []string) []string {
 
-	mapa := make(map[string]int)
+	mapa := make(map[string]struct{})
 	for _, key := range s {
-		mapa[key]++
+		mapa[key] = struct{}{}
 	}
 
 	newSlice := []string{}
