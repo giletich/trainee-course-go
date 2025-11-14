@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	basicreverse "task-4/basicReverse"
+	basicreverse "task-4/basicrev"
 	"task-4/smartreverse"
 )
 

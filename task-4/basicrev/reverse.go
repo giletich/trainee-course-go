@@ -1,7 +1,5 @@
 package basicreverse
 
-import "fmt"
-
 func BasicReverse(s string) string {
 	strs := StringDivision(s)
 	res := Reverse(strs)
@@ -20,21 +18,21 @@ func StringDivision(s string) []string {
 		}
 	}
 	words = append(words, word)
-	fmt.Println(words)
 	return words
 }
 
 func Reverse(s []string) string {
 	result := ""
 
-	for _, value := range s {
+	for i, value := range s {
 		word := ""
-		for i := len(value) - 1; i >= 0; i-- {
-			word += string(value[i])
+		for j := len(value) - 1; j >= 0; j-- {
+			word += string(value[j])
 		}
 		result += word
-		result += " "
-		fmt.Println(value)
+		if i != len(s)-1 {
+			result += " "
+		}
 	}
 
 	return result
