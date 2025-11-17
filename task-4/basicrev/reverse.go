@@ -7,33 +7,45 @@ func BasicReverse(s string) string {
 }
 
 func StringDivision(s string) []string {
-	words := []string{}
-	word := ""
-	for i, value := range s {
-		if s[i] == ' ' {
-			words = append(words, word)
-			word = ""
-		} else {
-			word += string(value)
-		}
-	}
-	words = append(words, word)
-	return words
+    words := []string{}
+    word := ""
+    runes := []rune(s)
+    
+    for i := 0; i < len(runes); i++ {
+        if runes[i] == ' ' {
+            if word != "" {
+                words = append(words, word)
+                word = ""
+            }
+        } else {
+            word += string(runes[i])
+        }
+    }
+    
+    if word != "" {
+        words = append(words, word)
+    }
+    
+    return words
 }
 
 func Reverse(s []string) string {
-	result := ""
-
-	for i, value := range s {
-		word := ""
-		for j := len(value) - 1; j >= 0; j-- {
-			word += string(value[j])
-		}
-		result += word
-		if i != len(s)-1 {
-			result += " "
-		}
-	}
-
-	return result
+    result := ""
+    
+    for i, value := range s {
+        runes := []rune(value)
+        word := ""
+        
+        for j := len(runes) - 1; j >= 0; j-- {
+            word += string(runes[j])
+        }
+        
+        result += word
+        
+        if i != len(s)-1 {
+            result += " "
+        }
+    }
+    
+    return result
 }
