@@ -11,23 +11,29 @@ type CompositeHandler struct{
 }
 
 func (h *CompositeHandler) Enabled(ctx context.Context, level slog.Level) bool {
+
 	for _, handler := range h.handlers {
 		b := handler.Enabled(ctx, level)
+
 		if !b {
 			return b
 		}
+
 	}
 	return true
 }
 
 func (h *CompositeHandler) Handle(ctx context.Context, r slog.Record) error {
+
 	for _, handler := range h.handlers {
 		handler.Handle(ctx, r)
 	}
+	
 	return nil
 }
 
 func (h *CompositeHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
+
 	newHandlers := make([]slog.Handler, 0, len(h.handlers))
 
 	for _, handler := range h.handlers {
@@ -38,6 +44,7 @@ func (h *CompositeHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
 }
 
 func (h *CompositeHandler) WithGroup(name string) slog.Handler {
+
 	newHandlers := make([]slog.Handler, 0, len(h.handlers))
 
 	for _, handler := range h.handlers {
@@ -48,6 +55,7 @@ func (h *CompositeHandler) WithGroup(name string) slog.Handler {
 }
 
 func main() {
+
 	textHandler := slog.NewTextHandler(os.Stdout, nil)
 	jsonHandler := slog.NewJSONHandler(os.Stdout, nil)
 
@@ -56,4 +64,5 @@ func main() {
 	logger := slog.New(&compositeHandler)
 
 	logger.Info("privet")
+	
 }
