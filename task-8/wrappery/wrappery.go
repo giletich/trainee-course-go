@@ -10,8 +10,8 @@ import (
 func Wrappery(cake, out chan cake.Cake, K int, M int, ctx context.Context) {
 	wg := sync.WaitGroup{}
 
+	wg.Add(M)
 	for i := 1; i <= M; i++ {
-		wg.Add(1)
 		go WrapACake(i, cake, out, &wg, ctx)
 	}
 
@@ -34,6 +34,7 @@ func WrapACake(number int, in, out chan cake.Cake, wg *sync.WaitGroup, ctx conte
 			select {
 			case <-ctx.Done():
 				return
+				
 			case out <- cake.Cake{
 				CakeNumber: val.CakeNumber,
 				BakedBy:    val.BakedBy,

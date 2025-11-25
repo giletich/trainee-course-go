@@ -27,11 +27,3 @@ func RunPipeline(K int, N int, M int, numbers chan int, cakes, pkg chan cake.Cak
 	wg.Wait()
 }
 
-func WaitForPipeline(wg *sync.WaitGroup) chan struct{} {
-	done := make(chan struct{})
-	go func() {
-		wg.Wait()
-		close(done)
-	}()
-	return done
-}

@@ -10,9 +10,8 @@ import (
 func Bakery(numbers chan int, cakes chan cake.Cake, K int, N int, ctx context.Context) {
 	wg := sync.WaitGroup{}
 	
-
+	wg.Add(N)
 	for i := 1; i <= N; i++ {
-		wg.Add(1)
 		go BakeACake(i, numbers, cakes, &wg, ctx)
 	}
 
